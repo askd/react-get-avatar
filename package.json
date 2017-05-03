@@ -1,0 +1,66 @@
+{
+  "name": "react-get-avatar",
+  "version": "0.0.0",
+  "description": "React Component that allows you to get an avatar with the web camera",
+  "main": "index.js",
+  "files": [
+    "*.md",
+    "lib/*.js"
+  ],
+  "scripts": {
+    "clean": "rimraf lib/*.js && rimraf lib/*.css",
+    "build:js": "babel -s inline -d ./ **/*.es6",
+    "build": "npm run clean && npm run build:js",
+    "prepublish": "npm run build",
+    "test": "$(npm bin)/jest"
+  },
+  "author": "Anna Selezniova",
+  "license": "MIT",
+  "keywords": [
+    "webcam",
+    "avatar",
+    "react",
+    "react-component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/askd/react-get-avatar"
+  },
+  "homepage": "https://askd.github.io/react-get-avatar/",
+  "devDependencies": {
+    "autoprefixer": "^6.5.4",
+    "babel-cli": "^6.23.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-3": "^6.22.0",
+    "enzyme": "^2.7.1",
+    "enzyme-to-json": "^1.5.0",
+    "jest": "^19.0.2",
+    "jsdom": "^9.11.0",
+    "postcss-cli": "^3.2.0",
+    "prop-types": "^15.5.0",
+    "react-addons-test-utils": "^15.4.2",
+    "react-test-renderer": "^15.5.4",
+    "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": [
+      "<rootDir>/test/setup.js"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
