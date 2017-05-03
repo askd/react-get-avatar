@@ -1,14 +1,22 @@
-# React Get Avatar
+# react-get-avatar
 
 React Component that allows you to get an avatar with the web camera.
+
+See browser support [here](http://caniuse.com/#feat=stream)
+
+
+## [Demo](https://askd.github.io/react-get-avatar/)
+
 
 ## Usage
 
 ```javascript
-<GetAvatar
-  handleGet={ handleGetAvatar }
-/>
+<GetAvatar handleGet={ handleGetAvatar } />
+```
 
+You can use something like this to upload the image on server:
+
+```javascript
 handleGetAvatar(dataURI) {
   const blob = dataURItoBlob(dataURI);
   const formData = new FormData();
@@ -17,9 +25,6 @@ handleGetAvatar(dataURI) {
   postData('/upload', formData);
 }
 ```
-
-
-## [Demo](https://askd.github.io/react-get-avatar/)
 
 ## Installation
 
