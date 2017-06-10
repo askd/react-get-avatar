@@ -11,7 +11,7 @@ See browser support [here](http://caniuse.com/#feat=stream)
 ## Usage
 
 ```javascript
-<GetAvatar handleGet={ handleGetAvatar } />
+<GetAvatar width={400} height={400} handleGet={ handleGetAvatar } />
 ```
 
 You can use something like this to upload the image on server:
@@ -36,9 +36,9 @@ npm install react-get-avatar
 
 | Property | Required | Type | Default Value  | Available Values  | Description |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| width | false | number | 0 | Any number | Image width  |
-| height | false | number | 0 | Any number | Image height |
-| handleGet | false | func |  |  | Callback that returns image dataURI |
+| width | true | number | 0 | Any number | Image width  |
+| height | true | number | 0 | Any number | Image height |
+| handleGet | true | func |  |  | Callback that returns image dataURI |
 
 ## More
 

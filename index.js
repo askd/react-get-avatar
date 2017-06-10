@@ -1,4 +1,4 @@
-var GetAvatar = require('./lib/GetAvatar');
+var GetAvatar = require('./lib/components/GetAvatar/GetAvatar');
 
 GetAvatar.displayName = 'GetAvatar';
 

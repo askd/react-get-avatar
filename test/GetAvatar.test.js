@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 
 import React from 'react';
-import GetAvatar from '../lib/GetAvatar.js';
+import GetAvatar from '../lib/components/GetAvatar/GetAvatar';
 
 describe('<GetAvatar />', () => {
   it('should render', () => {

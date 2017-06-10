@@ -18,6 +18,7 @@
   "license": "MIT",
   "keywords": [
     "webcam",
+    "canvas",
     "avatar",
     "react",
     "react-component"

@@ -33,17 +33,3 @@ export function getMediaSources() {
       });
   });
 }
-
-export function createScreenshot(elem) {
-  const canvas = document.createElement('canvas');
-  const width = elem.offsetWidth;
-  const height = elem.offsetHeight;
-
-  canvas.width = width;
-  canvas.height = height;
-
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(elem, 0, 0, width, height);
-
-  return canvas.toDataURL('image/jpeg', 0.5);
-}
