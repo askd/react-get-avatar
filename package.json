@@ -1,11 +1,11 @@
 {
   "name": "react-get-avatar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React Component that allows you to get an avatar with the web camera",
   "main": "index.js",
   "files": [
     "*.md",
-    "lib/*.js"
+    "lib/**/*.js"
   ],
   "scripts": {
     "clean": "rimraf lib/*.js && rimraf lib/*.css",
