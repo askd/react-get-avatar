@@ -1,6 +1,6 @@
 {
   "name": "react-get-avatar",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "React Component that allows you to get an avatar with the web camera",
   "main": "index.js",
   "files": [
