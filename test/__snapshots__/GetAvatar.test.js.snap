@@ -1,24 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<GetAvatar /> should render 1`] = `
-<div
-  style={
-    Object {
-      "backgroundColor": "black",
-      "height": "100px",
-      "position": "relative",
-      "width": "100px",
-    }
-  }
->
-  <span
+<div>
+  <div
     style={
       Object {
-        "color": "white",
+        "height": "100px",
+        "position": "relative",
+        "width": "100px",
       }
     }
   >
-    Webcam not supported
-  </span>
+    <GetAvatarWebcam
+      handleReady={[Function]}
+      isActive={false}
+    />
+    <div
+      style={
+        Object {
+          "height": 0,
+          "left": 0,
+          "overflow": "hidden",
+          "position": "absolute",
+          "top": 0,
+          "width": 0,
+        }
+      }
+    >
+      <GetAvatarCanvas
+        handleDraw={[Function]}
+        handleReady={[Function]}
+        height={100}
+        source={null}
+        width={100}
+      />
+    </div>
+  </div>
+  <div>
+    <label
+      style={
+        Object {
+          "backgroundColor": "steelblue",
+          "color": "white",
+          "cursor": "pointer",
+          "display": "inline-block",
+          "fontSize": "16px",
+          "height": "50px",
+          "lineHeight": "50px",
+          "overflow": "hidden",
+          "position": "relative",
+          "textAlign": "center",
+          "verticalAlign": "top",
+          "width": "100%",
+        }
+      }
+    >
+      Upload File
+      <input
+        onChange={[Function]}
+        style={
+          Object {
+            "height": "0.1px",
+            "opacity": "0",
+            "overflow": "hidden",
+            "position": "absolute",
+            "width": "0.1px",
+            "zIndex": "-1",
+          }
+        }
+        type="file"
+      />
+    </label>
+  </div>
 </div>
 `;
