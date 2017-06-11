@@ -1,6 +1,6 @@
 # react-get-avatar
 
-React Component that allows you to get an avatar with the web camera.
+React Component that allows you to get an avatar using a webcam or upload from a file and crop it.
 
 See browser support [here](http://caniuse.com/#feat=stream)
 
@@ -36,8 +36,13 @@ npm install react-get-avatar
 
 | Property | Required | Type | Default Value  | Available Values  | Description |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| width | true | number | 0 | Any number | Image width  |
-| height | true | number | 0 | Any number | Image height |
+| width | true | number | 0 | Any number | Avatar width  |
+| height | true | number | 0 | Any number | Avatar height |
+| imageType | false | string | `image/jpeg` | `image/jpeg`, `image/png`, `image/gif`, `image/webp` | Avatar image type |
+| imageQuality | false | number | 0.5 | from 0.1 to 1 | Avatar image quality |
+| className | false | string | | | Component className |
+| navClassName | false | string | | | Navigation className |
+| buttonClassName | false | shape({ toggle: string, upload: string, save: string, cancel: string }) | | | Buttons classNames |
 | handleGet | true | func |  |  | Callback that returns image dataURI |
 
 ## More
