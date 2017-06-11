@@ -150,9 +150,11 @@ export default class GetAvatarWebcam extends React.Component {
   }
 }
 
+const { bool, func } = PropTypes;
+
 GetAvatarWebcam.propTypes = {
-  handleReady: PropTypes.func,
-  isActive: PropTypes.bool,
+  handleReady: func,
+  isActive: bool,
 };
 
 GetAvatarWebcam.defaultProps = {

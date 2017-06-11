@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { drawImage, clearCanvas, redrawCanvas, zoomCanvas, resetCanvas, transformCanvas,
          trackTransforms } from './utils';
-// import styles from './styles';
 
 export default class GetAvatarCanvas extends React.Component {
   constructor(props) {
@@ -165,12 +164,14 @@ export default class GetAvatarCanvas extends React.Component {
   }
 }
 
+const { any, func, number } = PropTypes;
+
 GetAvatarCanvas.propTypes = {
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  source: PropTypes.any,
-  handleReady: PropTypes.func,
-  handleDraw: PropTypes.func,
+  width: number.isRequired,
+  height: number.isRequired,
+  source: any,
+  handleReady: func,
+  handleDraw: func,
 };
 
 GetAvatarCanvas.defaultProps = {

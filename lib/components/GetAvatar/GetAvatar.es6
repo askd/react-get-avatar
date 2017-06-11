@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import GetAvatarWebcam from '../GetAvatarWebcam/GetAvatarWebcam';
 import GetAvatarCanvas from '../GetAvatarCanvas/GetAvatarCanvas';
-// import getDataURL from './utils';
 import styles from './styles';
 
 export default class GetAvatar extends React.Component {
@@ -30,14 +29,6 @@ export default class GetAvatar extends React.Component {
       onClickSave: this.onClickSave.bind(this),
       onClickCancel: this.onClickCancel.bind(this),
     };
-  }
-
-  componentWillUnmount() {
-
-  }
-
-  componentDidMount() {
-
   }
 
   onWebcamReady(elem) {
@@ -67,7 +58,6 @@ export default class GetAvatar extends React.Component {
     const { webcamElement } = this.state;
 
     this.setState({
-      // canvasActive: true,
       canvasSource: webcamElement,
     });
   }
@@ -79,7 +69,6 @@ export default class GetAvatar extends React.Component {
       const image = new Image();
       image.onload = () => {
         this.setState({
-          // canvasActive: true,
           canvasSource: image,
         });
       };
@@ -96,12 +85,9 @@ export default class GetAvatar extends React.Component {
   }
 
   onClickSave() {
-    const { handleGet } = this.props;
-    // const { width, height, handleGet } = this.props;
+    const { handleGet, imageType, imageQuality } = this.props;
 
-    // const data = null; // canvas data
-    // const dataURI = getDataURL({ data, width, height });
-    const dataURI = this.state.canvasElement.toDataURL('image/jpeg', 0.5);
+    const dataURI = this.state.canvasElement.toDataURL(imageType, imageQuality);
 
     if (handleGet) handleGet(dataURI);
   }
@@ -113,6 +99,68 @@ export default class GetAvatar extends React.Component {
     });
   }
 
+  wrapperStyles() {
+    const { width, height } = this.props;
+    return {
+      ...styles.wrapper,
+      width: `${width}px`,
+      height: `${height}px`,
+    };
+  }
+
+  canvasStyles() {
+    const { canvasActive } = this.state;
+
+    return canvasActive ? { ...styles.canvas, ...styles.canvasActive } : styles.canvas;
+  }
+
+  rootStyles() {
+    const { className } = this.props;
+    return className ? { className } : null;
+  }
+
+  navStyles() {
+    const className = this.props.navClassName;
+    return className ? { className } : null;
+  }
+
+  toggleStyles() {
+    const className = this.props.buttonClassName.toggle;
+    if (className) return { className };
+
+    const style = { ...styles.button, ...styles.buttonFirst };
+    return { style };
+  }
+
+  uploadStyles() {
+    const className = this.props.buttonClassName.upload;
+    if (className) return { className };
+
+    const { webcamReady, canvasReady } = this.state;
+    if (webcamReady && canvasReady) {
+      const style = { ...styles.button, ...styles.buttonUpload };
+      return { style };
+    }
+    const style = { ...styles.button, ...styles.buttonOnly, ...styles.buttonUpload };
+    return { style };
+  }
+
+  saveStyles() {
+    const className = this.props.buttonClassName.save;
+    if (className) return { className };
+
+    const style = { ...styles.button, ...styles.buttonFirst };
+    return { style };
+  }
+
+  cancelStyles() {
+    const className = this.props.buttonClassName.cancel;
+    if (className) return { className };
+
+    const style = styles.button;
+    return { style };
+  }
+
   render() {
     const { width, height } = this.props;
     const {
@@ -121,12 +169,8 @@ export default class GetAvatar extends React.Component {
     } = this.state;
 
     return (
-      <div style={ styles.root }>
-        <div style={{
-          ...styles.wrapper,
-          width: `${width}px`,
-          height: `${height}px`,
-        }}>
+      <div { ...this.rootStyles() }>
+        <div style={ this.wrapperStyles() }>
           <GetAvatarWebcam
             handleReady={ (elem) => { this.onWebcamReady(elem); } }
             isActive={ webcamStarted && !canvasActive }
@@ -135,9 +179,7 @@ export default class GetAvatar extends React.Component {
             style={ styles.capture }
             onClick={ this.listeners.onClickWebcamCapture }
           /> }
-          <div style={
-            canvasActive ? { ...styles.canvas, ...styles.canvasActive } : styles.canvas
-          }>
+          <div style={ this.canvasStyles() }>
             <GetAvatarCanvas
               source={ canvasSource }
               width={ width }
@@ -147,18 +189,14 @@ export default class GetAvatar extends React.Component {
             />
           </div>
         </div>
-        { !canvasActive && <div
-          style={ styles.nav }
-        >
+        { !canvasActive && <div { ...this.navStyles() }>
           { webcamReady && canvasReady && <div
-            style={{ ...styles.button, ...styles.buttonToggle }}
+            { ...this.toggleStyles() }
             onClick={ this.listeners.onClickWebcamToggle }
           >
             { webcamStarted ? 'Stop Webcam' : 'Start Webcam' }
           </div> }
-          <label
-            style={{ ...styles.button, ...styles.buttonUpload }}
-          >
+          <label { ...this.uploadStyles() }>
             { 'Upload File' }
             <input
               style={ styles.inputUpload }
@@ -167,17 +205,15 @@ export default class GetAvatar extends React.Component {
             />
           </label>
         </div> }
-        { canvasActive && <div
-          style={ styles.nav }
-        >
+        { canvasActive && <div { ...this.navStyles() }>
           <div
-            style={{ ...styles.button, ...styles.buttonSave }}
+            { ...this.saveStyles() }
             onClick={ this.listeners.onClickSave }
           >
             { 'Save' }
           </div>
           <div
-            style={{ ...styles.button }}
+            { ...this.cancelStyles() }
             onClick={ this.listeners.onClickCancel }
           >
             { 'Cancel' }
@@ -188,14 +224,29 @@ export default class GetAvatar extends React.Component {
   }
 }
 
+const { func, oneOf, number, shape, string } = PropTypes;
+
 GetAvatar.propTypes = {
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  handleGet: PropTypes.func.isRequired,
+  width: number.isRequired,
+  height: number.isRequired,
+  imageType: oneOf(['image/jpeg', 'image/png', 'image/gif', 'image/webp']),
+  imageQuality: number,
+  className: string,
+  navClassName: string,
+  buttonClassName: shape({
+    toggle: string,
+    upload: string,
+    save: string,
+    cancel: string,
+  }),
+  handleGet: func.isRequired,
 };
 
 GetAvatar.defaultProps = {
   width: 0,
   height: 0,
+  imageType: 'image/jpeg',
+  imageQuality: 0.5,
+  buttonClassName: {},
   handleGet: () => {},
 };

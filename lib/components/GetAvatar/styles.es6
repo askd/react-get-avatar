@@ -1,8 +1,4 @@
 export default {
-  root: {
-
-  },
-
   wrapper: {
     position: 'relative',
   },
@@ -19,11 +15,7 @@ export default {
   canvasActive: {
     width: '100%',
     height: '100%',
-    backgroundColor: 'silver',
-  },
-
-  nav: {
-
+    backgroundColor: 'white',
   },
 
   button: {
@@ -39,7 +31,11 @@ export default {
     cursor: 'pointer',
   },
 
-  buttonToggle: {
+  buttonOnly: {
+    width: '100%',
+  },
+
+  buttonFirst: {
     width: 'calc(50% - 1px)',
     marginRight: '1px',
   },
@@ -56,15 +52,6 @@ export default {
     opacity: '0',
     overflow: 'hidden',
     zIndex: '-1',
-  },
-
-  buttonSave: {
-    width: 'calc(50% - 1px)',
-    marginRight: '1px',
-  },
-
-  buttonCancel: {
-
   },
 
   capture: {
